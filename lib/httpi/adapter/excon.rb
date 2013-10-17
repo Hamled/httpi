@@ -61,7 +61,7 @@ module HTTPI
         opts[:response_block]  = @request.on_body if @request.on_body
         opts[:proxy]           = @request.proxy if @request.proxy
 
-        if ssl.verify_mode == :peer
+        unless ssl.verify_mode == :none
           opts[:ssl_verify_peer] = true
           opts[:ssl_ca_file] = ssl.ca_cert_file if ssl.ca_cert_file
           opts[:client_cert] = ssl.cert     if ssl.cert
